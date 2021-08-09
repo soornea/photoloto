@@ -4,6 +4,7 @@ const passport = require('passport');
 require('./authentication/passportConfig');
 const keys = require('./config/keys');
 const login = require('./routes/authentication');
+const contest = require('./routes/contest');
 const cookieSession = require('cookie-session');
 const app = express();
 const port = process.env.port || 8000;
@@ -18,6 +19,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', login);
+app.use('/contest', contest)
 
 mongoose.connect(keys.mongodb.connectionUrl, (err, client) => {
     //  console.log(' client ', client)
