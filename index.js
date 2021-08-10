@@ -6,10 +6,12 @@ const keys = require('./config/keys');
 const login = require('./routes/authentication');
 const contest = require('./routes/contest');
 const cookieSession = require('cookie-session');
+const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.port || 8000;
 
 app.set('view engine', 'ejs')
+app.use(bodyParser.json());
 app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
     keys: [keys.session.key]
