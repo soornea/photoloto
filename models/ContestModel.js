@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+// photo url should just be a name
 const ContestModel = new Schema({
     title: String,
     description: String,
@@ -20,4 +21,5 @@ const ContestModel = new Schema({
 
 });
 
-module.exports = mongoose.model('contest', ContestModel);
+const contest = mongoose.model('contest', ContestModel);
+module.exports = contest

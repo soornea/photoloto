@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userScema = new Schema({
+const userSchema = new Schema({
     username: String,
     googleId: String,
     email: String,
     verified: Boolean,
+    roles: [String],
     submissions: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -15,5 +16,5 @@ const userScema = new Schema({
     ]
 });
 
-const User = mongoose.model('user', userScema);
+const User = mongoose.model('user', userSchema);
 module.exports = User;

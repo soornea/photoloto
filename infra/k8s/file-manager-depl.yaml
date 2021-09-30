@@ -1,0 +1,34 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+    name: file-manger-depl
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: file-manager
+    template:
+        metadata:
+            labels:
+                app: file-manager
+        spec:
+            containers:
+                - name: file-manager
+                  image: sourenaair/file-manager
+---
+apiVersion: v1
+kind: Service 
+metadata:
+    name: file-manger-srv
+spec:
+    selector:
+        app: file-manager
+    ports:
+        - name : file-manager
+          protocol: TCP
+          port: 4005
+          targetPort: 4005                                 
+
+
+
+

@@ -8,7 +8,7 @@ const contest = require('./routes/contest');
 const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 const app = express();
-const port = process.env.port || 8000;
+const port = process.env.port || 4005;
 
 app.set('view engine', 'ejs')
 app.use(bodyParser.json());

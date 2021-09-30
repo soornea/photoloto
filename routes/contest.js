@@ -13,10 +13,21 @@ const mongoose = require('mongoose');
 //5. as a user see all current and previous submissions 
 
 
-routes.post('/', async (req, res) => {
-    const { description, startDate, endDate } = req.body;
+routes.get('/greetings', (req, res, next) => {
+    // just a simple test for testing ingress
+    res.send('hail king Soorena');
+})
 
+routes.get('/', (req, res, next) => {
+    // just a simple test for testing ingress
+    res.send('hail king Soorena');
+})
+
+
+routes.post('/', async (req, res) => {
+    const { title, description, startDate, endDate } = req.body;
     const contest = new ContestModel({
+        title,
         description: description,
         startDate,
         endDate,
@@ -25,7 +36,6 @@ routes.post('/', async (req, res) => {
     res.status(201).send('a new contest was created :' + result);
 
 })
-
 
 routes.post('/addSubmision', async (req, res) => {
     const { contestId, photoUrl, userId } = req.body
@@ -38,9 +48,7 @@ routes.post('/addSubmision', async (req, res) => {
     const result = await contest.save();
     res.send('a new submission was added to the contest :' + result);
 
-
 })
-
 
 routes.get('/findAll/user/:userId', async (req, res) => {
     //for one user find all submissions. 

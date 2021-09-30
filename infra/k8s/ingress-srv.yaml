@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-srv
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: photoloto.com
+      http:
+        paths:
+          - path: /contest
+            pathType: Prefix
+            backend:
+              service:
+                name: file-manger-srv
+                port:
+                    number: 4005
