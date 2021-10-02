@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express')
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -22,6 +23,12 @@ app.use(passport.session());
 
 app.use('/', login);
 app.use('/contest', contest)
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 mongoose.connect(keys.mongodb.connectionUrl, (err, client) => {
     //  console.log(' client ', client)
